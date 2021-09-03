@@ -1,0 +1,12 @@
+[Unit]
+Description=Booking API
+
+[Service]
+ExecStart=/usr/lib/jvm/java-11-openjdk-amd64/bin/java /opt/booking-api/reservation-1.0-SNAPSHOT.jar
+ExecStop=- kill -15 $(ps aux | grep java | grep -v grep | awk '{print $2}')
+User=reservation
+Group=reservation
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
